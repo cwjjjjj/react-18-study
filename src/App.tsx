@@ -1,16 +1,10 @@
-import { css } from "@emotion/react";
+import Route from "./components/Route";
 
 function App() {
   return (
-    <div
-      // className=" text-red-300"
-      css={css`
-        font-size: 100px;
-        color: red;
-      `}
-    >
-      react
-    </div>
+    <>
+      <Route />
+    </>
   );
 }
 

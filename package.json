@@ -11,7 +11,8 @@
     "@emotion/react": "^11.9.0",
     "path": "^0.12.7",
     "react": "^18.1.0",
-    "react-dom": "^18.0.0"
+    "react-dom": "^18.0.0",
+    "react-router-dom": "6"
   },
   "devDependencies": {
     "@emotion/babel-plugin": "^11.9.2",
