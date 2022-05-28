@@ -1,7 +1,30 @@
 import { useVolume } from "@/hooks/useVolume";
+import { useEffect } from "react";
 
 export default function Volume() {
   const { start, stop, isRecording, volume, setReady, ready } = useVolume();
+  const test = () => {
+    setTimeout(
+      console.log,
+      100,
+      new Promise((resolve, reject) => reject(3)).catch((e) =>
+        console.log("e", e)
+      )
+    );
+  };
+
+  const testTry = () => {
+    try {
+      // let tt = 1
+      console.log("123", tt);
+    } catch {
+      console.log("err");
+    }
+  };
+  useEffect(() => {
+    test();
+    testTry();
+  }, []);
   return (
     <div>
       <button onClick={() => setReady(true)}>开始录音</button>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      window.a = 0;
+      let obj = {
+        a: 2,
+      };
+      // function test() {
+      //   // this.a = 1;
+      //   console.log("test", this.a);
+      // }
+      const test = () => {
+        // this.a = 1;
+        console.log("test", this.a);
+      };
+      test.call(obj);
+      console.log(
+        "function",
+        function () {
+          console.log("123");
+        },
+        "name",
+        test
+      );
+
+      function fib(n) {
+        return fibImpl(0, 1, n);
+      }
+
+      function fibImpl(a, b, n) {
+        if (n == 0) {
+          return a;
+        }
+        return fibImpl(b, a + b, n - 1);
+      }
+
+      console.log(fib(6));
+      // test2();
+
+      // let test2 = function () {
+      //   console.log("test2");
+      // };
+
+      // test3();
+
+      // const test3 = () => {
+      //   console.log("test3");
+      // };
+
+      // test4();
+
+      // let test4 = function test4() {
+      //   console.log("test4");
+      // };
+    </script>
+  </body>
+</html>
