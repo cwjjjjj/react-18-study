@@ -1,16 +1,14 @@
-import { Route, Routes, BrowserRouter } from "react-router-dom";
-import Main from "@/components/Main";
+import { Route, Routes } from "react-router-dom";
 import Volume from "@/components/Volume";
 import CanvasTest from "../CanvasTest";
+import FramerMotion from "../FramerMotion";
 
 export default function index() {
   return (
-    <BrowserRouter basename="/">
-      <Routes>
-        <Route path="/" element={<Main />} />
-        <Route path="volume" element={<Volume />} />
-        <Route path="canvas" element={<CanvasTest />} />
-      </Routes>
-    </BrowserRouter>
+    <Routes>
+      <Route index element={<Volume />} />
+      <Route path="canvas" element={<CanvasTest />} />
+      <Route path="framer-motion" element={<FramerMotion />} />
+    </Routes>
   );
 }
