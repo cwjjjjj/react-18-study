@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div>hhhh</div>
+    <template> <div>bbb</div></template>
+    <script>
+      const test = () => {
+        console.log("test1");
+        throw new Error("哦豁 出错了");
+        console.log("test2");
+      };
+      try {
+        test();
+      } catch (error) {
+        console.log("error", error);
+      }
+    </script>
+  </body>
+</html>

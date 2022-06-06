@@ -7,6 +7,7 @@ function App() {
   return (
     <>
       <nav>
+        <button onClick={() => navigate("/")}>Home</button>
         <button onClick={() => navigate("/canvas")}>Canvas</button>
         <button onClick={() => navigate("/framer-motion")}>
           Framer Motion

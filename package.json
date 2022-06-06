@@ -15,7 +15,8 @@
     "path": "^0.12.7",
     "react": "^18.1.0",
     "react-dom": "^18.0.0",
-    "react-router-dom": "6"
+    "react-router-dom": "6",
+    "rsuite": "^5.14.0"
   },
   "devDependencies": {
     "@emotion/babel-plugin": "^11.9.2",

@@ -1,5 +1,5 @@
 import { useVolume } from "@/hooks/useVolume";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 export default function Volume() {
   const { start, stop, isRecording, volume, setReady, ready } = useVolume();
@@ -25,6 +25,16 @@ export default function Volume() {
     test();
     testTry();
   }, []);
+
+  const videoRef = useRef<HTMLVideoElement>(null);
+  useEffect(() => {
+    console.log("videoRef", videoRef.current);
+    setInterval(() => {
+      console.log("ready", videoRef.current?.seekable);
+    }, 1000);
+
+    const a = new Notification("hello");
+  }, []);
   return (
     <div>
       <button onClick={() => setReady(true)}>开始录音</button>
@@ -41,6 +51,15 @@ export default function Volume() {
       </button>
       <div>{isRecording ? "录音中" : "未录音"}</div>
       <div>音量大小：{volume}</div>
+
+      <video
+        src="https://videocdn.jellow.site/lvw5lLB8HEamWyYqY5e-EEFtSRvL.mp4?sign=46c7c80d197ac439361ae23d09075d68&t=629c524f"
+        width={600}
+        height={600}
+        controls
+        ref={videoRef}
+        poster="../assets/children-share.png"
+      ></video>
     </div>
   );
 }
