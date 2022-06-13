@@ -29,9 +29,13 @@ export default function Volume() {
   const videoRef = useRef<HTMLVideoElement>(null);
   useEffect(() => {
     console.log("videoRef", videoRef.current);
-    setInterval(() => {
+    const timer = setInterval(() => {
       console.log("ready", videoRef.current?.seekable);
     }, 1000);
+
+    return () => {
+      clearInterval(timer);
+    };
 
     const a = new Notification("hello");
   }, []);
