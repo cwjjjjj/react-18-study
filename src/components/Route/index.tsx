@@ -3,6 +3,7 @@ import Volume from "@/components/Volume";
 import CanvasTest from "../CanvasTest";
 import FramerMotion from "../FramerMotion";
 import KeyBoard from "../KeyBoard";
+import Test from "../Test";
 
 export default function index() {
   return (
@@ -11,6 +12,7 @@ export default function index() {
       <Route path="canvas" element={<CanvasTest />} />
       <Route path="framer-motion" element={<FramerMotion />} />
       <Route path="key-board" element={<KeyBoard />} />
+      <Route path="test" element={<Test />} />
     </Routes>
   );
 }

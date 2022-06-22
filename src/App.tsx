@@ -13,6 +13,7 @@ function App() {
           Framer Motion
         </button>
         <button onClick={() => navigate("/key-board")}>Key Board</button>
+        <button onClick={() => navigate("/test")}>Test</button>
       </nav>
       <hr />
       <Route />
