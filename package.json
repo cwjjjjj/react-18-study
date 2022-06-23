@@ -1,7 +1,7 @@
 {
   "name": "react-18-study",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.0.1",
   "scripts": {
     "cz": "git add . && git cz",
     "dev": "vite",
