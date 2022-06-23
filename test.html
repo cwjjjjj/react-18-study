@@ -7,9 +7,24 @@
     <title>Document</title>
   </head>
   <body>
+    <style style="display: block" contenteditable="true">
+      .test {
+        height: 100px;
+        width: 100px;
+        background-color: red;
+      }
+      input {
+        color: orange;
+      }
+      input:focus {
+        border-color: Highlight;
+      }
+    </style>
+    <div class="test"></div>
     <div id="aa">hhhh</div>
     <template> <div>bbb</div></template>
     <div onclick="keyBoard()">qqq</div>
+    <input type="text" style="outline: none" />
     <script>
       function handleClick() {
         console.log("click");
