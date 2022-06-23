@@ -115,7 +115,24 @@
       //     );
       //   });
       // }
-      var worker = new Worker("./worker.js");
+      // var worker = new Worker("./worker.js");
+
+      const wait = (color, time) => {
+        return new Promise((resolve, reject) => {
+          setTimeout(() => {
+            console.log("color", color);
+            resolve();
+          }, time);
+        });
+      };
+
+      const loop = async () => {
+        await wait("red", 500);
+        await wait("yellow", 2000);
+        await wait("blue", 1000);
+        loop();
+      };
+      loop();
     </script>
   </body>
 </html>
