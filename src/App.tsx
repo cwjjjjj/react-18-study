@@ -14,6 +14,8 @@ function App() {
         </button>
         <button onClick={() => navigate("/key-board")}>Key Board</button>
         <button onClick={() => navigate("/test")}>Test</button>
+        <button onClick={() => navigate("/react-use")}>React Use</button>
+        <button onClick={() => navigate("/ref")}>Ref</button>
       </nav>
       <hr />
       <Route />

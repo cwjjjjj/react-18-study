@@ -6,25 +6,163 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
   </head>
+  <style style="display: block" contenteditable="true">
+    rticle {
+      position: relative;
+      z-index: 0;
+    }
+    article h4,
+    article footer {
+      position: -webkit-sticky; /* for Safari */
+      position: sticky;
+    }
+    article h4 {
+      margin: 1em 0 0;
+      background-color: #333;
+      color: #fff;
+      padding: 10px;
+      top: 0;
+      z-index: 1;
+    }
+    article content {
+      display: block;
+      background-color: #ffffe0;
+      position: relative;
+      padding: 5px 10px;
+    }
+    article footer {
+      background-color: #cd0000;
+      color: #fff;
+      padding: 10px;
+      bottom: 50vh;
+      z-index: -1;
+    }
+
+    .test {
+      height: 100px;
+      width: 100px;
+      background-color: red;
+      color: pink;
+      position: absolute;
+      inset: 0;
+      /* left: 0;
+      top: 0;
+      right: 0;
+      bottom: 0; */
+      margin: auto auto;
+    }
+    .testSon {
+      color: initial;
+    }
+    input {
+      color: orange;
+    }
+    input:focus {
+      border-color: Highlight;
+    }
+    .divTest {
+      background-color: orange;
+      width: fit-content;
+      width: 100px;
+    }
+    .divTestSon {
+      background-color: bisque;
+      height: 100px;
+      width: 100px;
+    }
+    div[test] {
+      background-color: yellow;
+      direction: rtl;
+      /* text-align: right; */
+    }
+    wavy {
+      display: block;
+      height: 0.5em;
+      white-space: nowrap;
+      letter-spacing: 100vw;
+      padding-top: 0.5em;
+      overflow: hidden;
+    }
+    wavy::before {
+      content: "\2000\2000"; /* IE浏览器用实线代替*/
+      text-decoration: overline; /* 现代浏览器，Safari浏览器不支持text-decoration：overline wavy缩写*/
+      text-decoration-style: wavy;
+    }
+    myDiv {
+      background-color: red;
+      width: 100px;
+      height: 100px;
+      font-weight: 800;
+    }
+  </style>
   <body>
-    <style style="display: block" contenteditable="true">
-      .test {
-        height: 100px;
-        width: 100px;
-        background-color: red;
-      }
-      input {
-        color: orange;
-      }
-      input:focus {
-        border-color: Highlight;
-      }
-    </style>
-    <div class="test"></div>
+    <wavy>qqqqqwavy</wavy>
+    <myDiv>自定义div</myDiv>
+    <div test>你好</div>
+    <div class="divTest">
+      <!-- <div class="divTestSon"></div> -->
+      你好你好，你好 assasad asd
+    </div>
+    <div class="test">我是爸爸<span class="testSon">我是儿子</span></div>
     <div id="aa">hhhh</div>
     <template> <div>bbb</div></template>
     <div onclick="keyBoard()">qqq</div>
     <input type="text" style="outline: none" />
+    <dialog open>test</dialog>
+    <article>
+      <section>
+        <h4>新闻标题1</h4>
+        <content>
+          <p>新闻内容第1段。</p>
+          <p>新闻内容第2段。</p>
+          <p>新闻内容第3段。</p>
+          <p>新闻内容第4段。</p>
+        </content>
+        <footer>网友评论：这个新闻太夸张了吧！</footer>
+      </section>
+      <section>
+        <h4>新闻标题2</h4>
+        <content>
+          <p>新闻内容第1段。</p>
+          <p>新闻内容第2段。</p>
+          <p>新闻内容第3段。</p>
+          <p>新闻内容第4段。</p>
+        </content>
+        <footer>网友评论：感动</footer>
+      </section>
+      <section>
+        <h4>新闻标题3</h4>
+        <content>
+          <p>新闻内容第1段。</p>
+          <p>新闻内容第2段。</p>
+        </content>
+        <footer>网友评论：比心</footer>
+      </section>
+      <section>
+        <h4>新闻标题4</h4>
+        <content>
+          <p>新闻内容第1段。</p>
+          <p>新闻内容第2段。</p>
+        </content>
+        <footer>网友评论：赞赞赞</footer>
+      </section>
+      <section>
+        <h4>新闻标题5</h4>
+        <content>
+          <p>新闻内容第1段。</p>
+          <p>新闻内容第2段。</p>
+        </content>
+        <footer>网友评论：666</footer>
+      </section>
+      <section>
+        <h4>新闻标题6</h4>
+        <content>
+          <p>新闻内容第1段。</p>
+          <p>新闻内容第2段。</p>
+        </content>
+        <footer>网友评论：好耶！</footer>
+      </section>
+    </article>
     <script>
       function handleClick() {
         console.log("click");
@@ -117,22 +255,41 @@
       // }
       // var worker = new Worker("./worker.js");
 
-      const wait = (color, time) => {
-        return new Promise((resolve, reject) => {
-          setTimeout(() => {
-            console.log("color", color);
-            resolve();
-          }, time);
-        });
-      };
+      // const wait = (color, time) => {
+      //   return new Promise((resolve, reject) => {
+      //     setTimeout(() => {
+      //       console.log("color", color);
+      //       resolve();
+      //     }, time);
+      //   });
+      // };
 
-      const loop = async () => {
-        await wait("red", 500);
-        await wait("yellow", 2000);
-        await wait("blue", 1000);
-        loop();
-      };
-      loop();
+      // const loop = async () => {
+      //   await wait("red", 500);
+      //   await wait("yellow", 2000);
+      //   await wait("blue", 1000);
+      //   loop();
+      // };
+      // loop();
+
+      const p1 = new Promise(function (resolve, reject) {
+        setTimeout(() => reject(new Error("fail")), 3000);
+      });
+
+      const p2 = new Promise(function (resolve, reject) {
+        setTimeout(() => resolve(p1), 1000);
+      });
+
+      p2.then((result) => console.log("res", result))
+        .catch((error) => {
+          console.log("err", error);
+          console.log("p1", p1);
+          console.log("p2", p2);
+        })
+        .finally((e) => {
+          console.log("finally", e, p1, p2);
+        });
+      // Error: fail
     </script>
   </body>
 </html>
