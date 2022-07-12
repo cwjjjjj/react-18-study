@@ -17,8 +17,8 @@ export default function KeyBoard() {
     //     );
     //   });
     // }
-    var worker = new Worker("./worker.js");
-    console.log("worker", worker);
+    // var worker = new Worker("./worker.js");
+    // console.log("worker", worker);
 
     return () => {
       console.log("end", test);

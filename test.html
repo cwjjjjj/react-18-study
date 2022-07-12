@@ -94,8 +94,127 @@
       height: 100px;
       font-weight: 800;
     }
+    .cssVariant {
+      color: var(--myColor);
+      --myBg: orange;
+      background-color: var(--myBg);
+    }
+    .loading {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 111;
+      height: 4px;
+      width: 4px;
+      background-color: pink;
+      color: pink;
+      border-radius: 50%;
+      box-shadow: 0 -10px green, 10px 0px, 0 10px, -10px 0 blue,
+        -7px -7px rgba(0, 0, 0, 0.8), 7px -7px rgba(0, 0, 0, 1), 7px 7px,
+        -7px 7px;
+      animation: spin 1s infinite steps(8);
+    }
+    @keyframes spin {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }
+    .loading2 {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background: conic-gradient(deepskyblue, 30%, white);
+      --mask: radial-gradient(closest-side, transparent 75%, black 76%);
+      -webkit-mask-image: var(--mask);
+      mask-image: var(--mask);
+      animation: spin 1s linear infinite reverse;
+    }
+    @keyframes spin {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }
+    .stage {
+      perspective: 800px;
+      padding: 50px 0;
+    }
+    .container {
+      width: 128px;
+      height: 90px;
+      margin: auto;
+      transform: rotateY(0deg);
+      transform-style: preserve-3d;
+      transition: transform 1s;
+    }
+    .piece {
+      width: inherit;
+      height: inherit;
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      transform: rotateY(calc(var(--index) * 40deg)) translateZ(195.839px);
+      /* Chrome bug fix需要 */
+      box-shadow: 0 0 transparent;
+    }
+    dot {
+      display: inline-block;
+      height: 1em;
+      line-height: 1;
+      vertical-align: -0.25em;
+      overflow: hidden;
+    }
+    dot::before {
+      display: block;
+      content: "...\A..\A.";
+      white-space: pre-wrap;
+      animation: dot 3s infinite step-start both;
+    }
+    @keyframes dot {
+      33% {
+        transform: translateY(-2em);
+      }
+      66% {
+        transform: translateY(-1em);
+      }
+    }
   </style>
+  <div>正在加载<dot></dot></div>
+  <div class="stage">
+    <div id="container" class="container">
+      <img
+        class="piece"
+        src="https://cdn.pixabay.com/photo/2016/12/23/12/40/night-1927265__480.jpg"
+        style="--index: 0"
+      />
+      <img class="piece"
+      src=https://cdn.pixabay.com/photo/2016/12/23/12/40/night-1927265__480.jpg
+      style="--index: 1" />
+      <img class="piece" src="3.jpg" style="--index: 2" />
+      <img class="piece"
+      src=https://cdn.pixabay.com/photo/2016/12/23/12/40/night-1927265__480.jpg
+      style="--index: 3" />
+      <img class="piece" src="5.jpg" style="--index: 4" />
+      <img class="piece"
+      src=https://cdn.pixabay.com/photo/2016/12/23/12/40/night-1927265__480.jpg
+      style="--index: 5" />
+      <img class="piece" src="7.jpg" style="--index: 6" />
+      <img class="piece"
+      src=https://cdn.pixabay.com/photo/2016/12/23/12/40/night-1927265__480.jpg
+      style="--index: 7" />
+      <img class="piece" src="9.jpg" style="--index: 8" />
+    </div>
+  </div>
   <body>
+    <div class="loading2"></div>
+    <div class="loading"></div>
+    <div class="cssVariant" style="--myColor: red">cssVariant</div>
     <wavy>qqqqqwavy</wavy>
     <myDiv>自定义div</myDiv>
     <div test>你好</div>
@@ -290,6 +409,12 @@
           console.log("finally", e, p1, p2);
         });
       // Error: fail
+      const container = document.getElementById("container");
+      container.onclick = function () {
+        var index = (this.index || 0) + 1;
+        this.style.transform = "rotateY(" + index * 40 + "deg)";
+        this.index = index;
+      };
     </script>
   </body>
 </html>
