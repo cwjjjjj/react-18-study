@@ -7,6 +7,7 @@ import Test from "../Test";
 import ReactUse from "../ReactUse";
 import RefTest from "../RefTest";
 import Portals from "../Portals";
+import TwoPageCss from "../TwoPageCss";
 
 export default function index() {
   return (
@@ -19,6 +20,7 @@ export default function index() {
       <Route path="react-use" element={<ReactUse />} />
       <Route path="ref" element={<RefTest />} />
       <Route path="protals" element={<Portals />} />
+      <Route path="two-page" element={<TwoPageCss />} />
     </Routes>
   );
 }
