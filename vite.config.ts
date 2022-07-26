@@ -1,7 +1,9 @@
 import { defineConfig } from "vite";
 import path from "path";
+import ReactInspector from "vite-plugin-react-inspector";
 
 export default defineConfig({
+  plugins: [ReactInspector()],
   resolve: {
     alias: [
       { find: "@", replacement: path.resolve(__dirname, "./src") },

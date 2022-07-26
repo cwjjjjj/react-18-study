@@ -18,6 +18,7 @@ function App() {
         <button onClick={() => navigate("/ref")}>Ref</button>
         <button onClick={() => navigate("/protals")}>Portals</button>
         <button onClick={() => navigate("/two-page")}>Two Page</button>
+        <button onClick={() => navigate("/resize")}>Resize</button>
       </nav>
       <hr />
       <Route />
