@@ -19,6 +19,7 @@ function App() {
         <button onClick={() => navigate("/protals")}>Portals</button>
         <button onClick={() => navigate("/two-page")}>Two Page</button>
         <button onClick={() => navigate("/resize")}>Resize</button>
+        <button onClick={() => navigate("/drag")}>Drag</button>
       </nav>
       <hr />
       <Route />

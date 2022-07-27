@@ -9,6 +9,7 @@ import RefTest from "../RefTest";
 import Portals from "../Portals";
 import TwoPageCss from "../TwoPageCss";
 import Resize from "../Resize";
+import Drag from "../Drag";
 
 export default function index() {
   return (
@@ -23,6 +24,7 @@ export default function index() {
       <Route path="protals" element={<Portals />} />
       <Route path="two-page" element={<TwoPageCss />} />
       <Route path="resize" element={<Resize />} />
+      <Route path="drag" element={<Drag />} />
     </Routes>
   );
 }
