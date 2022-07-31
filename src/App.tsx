@@ -20,6 +20,7 @@ function App() {
         <button onClick={() => navigate("/two-page")}>Two Page</button>
         <button onClick={() => navigate("/resize")}>Resize</button>
         <button onClick={() => navigate("/drag")}>Drag</button>
+        <button onClick={() => navigate("/type-writing")}>type-writing</button>
       </nav>
       <hr />
       <Route />
