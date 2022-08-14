@@ -1,9 +1,16 @@
 import { defineConfig } from "vite";
 import path from "path";
 import ReactInspector from "vite-plugin-react-inspector";
+import Unocss from "unocss/vite";
+import { presetAttributify, presetUno } from "unocss";
 
 export default defineConfig({
-  plugins: [ReactInspector()],
+  plugins: [
+    ReactInspector(),
+    Unocss({
+      presets: [presetAttributify({}), presetUno()],
+    }),
+  ],
   resolve: {
     alias: [
       { find: "@", replacement: path.resolve(__dirname, "./src") },

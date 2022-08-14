@@ -11,6 +11,7 @@ import TwoPageCss from "../TwoPageCss";
 import Resize from "../Resize";
 import Drag from "../Drag";
 import Typewriting from "../TypeWriting";
+import Unocss from "../Unocss";
 
 export default function index() {
   return (
@@ -27,6 +28,8 @@ export default function index() {
       <Route path="resize" element={<Resize />} />
       <Route path="drag" element={<Drag />} />
       <Route path="type-writing" element={<Typewriting />} />
+
+      <Route path="unocss" element={<Unocss />} />
     </Routes>
   );
 }

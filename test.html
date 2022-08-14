@@ -373,20 +373,20 @@
         console.log(e.keyCode);
       });
 
-      // if ("serviceWorker" in navigator) {
-      //   window.addEventListener("load", function () {
-      //     // 所以Service Worker只是一个挂在navigator对象上的HTML5 API而已
-      //     navigator.serviceWorker.register("/service-worker.js").then(
-      //       function (registration) {
-      //         console.log("我注册成功了666");
-      //       },
-      //       function (err) {
-      //         console.log("我注册失败了");
-      //       }
-      //     );
-      //   });
-      // }
-      // var worker = new Worker("./worker.js");
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", function () {
+          // 所以Service Worker只是一个挂在navigator对象上的HTML5 API而已
+          navigator.serviceWorker.register("/service-worker.js").then(
+            function (registration) {
+              console.log("我注册成功了666");
+            },
+            function (err) {
+              console.log("我注册失败了");
+            }
+          );
+        });
+      }
+      var worker = new Worker("./worker.js");
 
       // const wait = (color, time) => {
       //   return new Promise((resolve, reject) => {
