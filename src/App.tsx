@@ -22,6 +22,7 @@ function App() {
         <button onClick={() => navigate("/drag")}>Drag</button>
         <button onClick={() => navigate("/type-writing")}>type-writing</button>
         <button onClick={() => navigate("/unocss")}>Unocss</button>
+        <button onClick={() => navigate("/list")}>list</button>
       </nav>
       <hr />
       <Route />
