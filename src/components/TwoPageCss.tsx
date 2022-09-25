@@ -1,6 +1,12 @@
 import { css } from "@emotion/react";
+import { useQueryClient } from "@tanstack/react-query";
 
 export default function TwoPageCss() {
+  const queryClient = useQueryClient();
+  queryClient.prefetchQuery(["test1"]);
+  queryClient.prefetchQuery(["test2"]);
+  queryClient.prefetchQuery(["test3"]);
+
   return (
     <main
       css={css`

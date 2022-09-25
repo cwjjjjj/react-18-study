@@ -10,10 +10,35 @@ export default function Unocss() {
           height: 200px;
           width: 100px;
           position: absolute;
+
+          /* span {
+            height: 200px;
+            background-color: green;
+            display: block;
+          } */
+
+          .test:has(> p:hover) {
+            background-color: black;
+          }
+
+          .test ~ span {
+            background-color: pink;
+          }
         `}
       >
-        1
+        <div>123</div>
+        <div className="test">
+          <span>
+            <p>pppppp</p>
+          </span>
+        </div>
+        <div>div</div>
+        <span>123123span</span>
+        <span>123123span</span>
+        <span>123123span</span>
+        <span>123123span</span>
       </div>
+      <span>ttt</span>
       <div
         css={css`
           background-color: orange;

@@ -1,12 +1,42 @@
 import { useLockBodyScroll, usePermission, useToggle } from "react-use";
 import SvgComponent from "./Svg";
+import img from "../assets/children-share.png";
+import { useQuery } from "@tanstack/react-query";
 
 const Demo = () => {
   const [locked, toggleLocked] = useToggle(false);
   const state = usePermission({ name: "microphone" });
   console.log(state);
+  console.log("img", img);
 
   useLockBodyScroll(locked);
+
+  const { data: test1 } = useQuery(["test1"], async () => {
+    return await new Promise((resolve, reject) => {
+      setTimeout(() => {
+        console.log("settimeout");
+        resolve(1);
+      }, 1000);
+    });
+  });
+
+  const { data: test2 } = useQuery(["test2"], async () => {
+    return await new Promise((resolve) => {
+      console.log("22");
+      resolve(2);
+    });
+  });
+
+  const { data: test3 } = useQuery(["test3"], async () => {
+    return await new Promise((resolve) => {
+      console.log("333");
+      resolve(3);
+    });
+  });
+
+  console.log("test1", test1);
+  console.log("test2", test2);
+  console.log("test3", test3);
 
   return (
     <div>
