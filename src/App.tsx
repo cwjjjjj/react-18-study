@@ -23,6 +23,7 @@ function App() {
         <button onClick={() => navigate("/type-writing")}>type-writing</button>
         <button onClick={() => navigate("/unocss")}>Unocss</button>
         <button onClick={() => navigate("/list")}>list</button>
+        <button onClick={() => navigate("/pixi")}>pixi</button>
       </nav>
       <hr />
       <Route />

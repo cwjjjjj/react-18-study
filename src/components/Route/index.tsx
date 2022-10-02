@@ -13,6 +13,7 @@ import Drag from "../Drag";
 import Typewriting from "../TypeWriting";
 import Unocss from "../Unocss";
 import List from "../List";
+import Pixi from "../Pixi";
 
 export default function index() {
   return (
@@ -31,6 +32,7 @@ export default function index() {
       <Route path="type-writing" element={<Typewriting />} />
       <Route path="unocss" element={<Unocss />} />
       <Route path="list" element={<List />} />
+      <Route path="pixi" element={<Pixi />} />
     </Routes>
   );
 }
