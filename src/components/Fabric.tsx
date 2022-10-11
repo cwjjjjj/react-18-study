@@ -1,8 +1,16 @@
 import { useEffect, useLayoutEffect, useRef } from "react";
 import { fabric } from "fabric";
 import { css } from "@emotion/react";
+import { useSearchParams } from "react-router-dom";
+
+// todo
+
+var searchParams = new URLSearchParams(window.location.search);
+const url = new URL(window.location.href.toString());
 
 const FabricJSCanvas = () => {
+  const [p, setP] = useSearchParams();
+  console.log("p", p);
   const canvasEl = useRef(null);
   const div = useRef<HTMLDivElement>(null);
 
@@ -64,6 +72,21 @@ const FabricJSCanvas = () => {
           border: solid 1px red;
         `}
       />
+      <button
+        onClick={() => {
+          setP({ qwe: "qweqwe" });
+          console.log("get", searchParams.get("id"));
+          console.log("searchParams1", searchParams);
+          searchParams.delete("id");
+          searchParams.append("test", "ttt");
+          console.log("searchParams2", searchParams);
+          // url.searchParams.set("country", "gb");
+          // url.searchParams.set("q", "some_word");
+          // window.location.href += "&myParams=123123";
+        }}
+      >
+        change url
+      </button>
       canvas
       <div
         css={css`
