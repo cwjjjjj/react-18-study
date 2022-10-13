@@ -37,7 +37,44 @@ export default function Pixi() {
   // }, []);
   console.log("axios", axios);
   return (
-    <div>
+    <div
+      css={css`
+        div {
+          position: absolute;
+          animation-name: spin;
+          animation-delay: 0s;
+          animation-duration: 2s;
+          animation-timing-function: linear;
+          animation-iteration-count: infinite;
+          transform-origin: 100% 100%;
+        }
+
+        div div {
+          position: relative;
+          animation-duration: 5s;
+          animation-play-state: paused;
+        }
+
+        #slowmo:checked ~ div {
+          animation-play-state: paused;
+        }
+
+        #slowmo:checked ~ div div {
+          animation-play-state: running;
+        }
+
+        @keyframes spin {
+          to {
+            transform: rotate(360deg);
+          }
+        }
+      `}
+    >
+      <input type="checkbox" id="slowmo" />
+      <label for="slowmo">Slowmo!</label>
+      <div>
+        <div>🐶</div>
+      </div>
       Pixi
       <time dateTime="2010-11-13">2010-11-13</time>
       <a

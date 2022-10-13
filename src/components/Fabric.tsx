@@ -2,6 +2,7 @@ import { useEffect, useLayoutEffect, useRef } from "react";
 import { fabric } from "fabric";
 import { css } from "@emotion/react";
 import { useSearchParams } from "react-router-dom";
+import { Button } from "rsuite";
 
 // todo
 
@@ -96,6 +97,10 @@ const FabricJSCanvas = () => {
         `}
         ref={div}
       />
+      <input type="button" />
+      <button type="button">123</button>
+      <Button type="button">123</Button>
+      <span type="button">123123</span>
     </div>
   );
 };
