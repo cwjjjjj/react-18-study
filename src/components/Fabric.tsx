@@ -101,6 +101,11 @@ const FabricJSCanvas = () => {
       <button type="button">123</button>
       <Button type="button">123</Button>
       <span type="button">123123</span>
+      <input
+        type="color"
+        onChange={(e) => console.log("e", e)}
+        value="#1da423"
+      />
     </div>
   );
 };
