@@ -15,6 +15,7 @@ import Unocss from "../Unocss";
 import List from "../List";
 import Pixi from "../Pixi";
 import Fabric from "../Fabric";
+import Three from "../Three";
 
 export default function index() {
   return (
@@ -35,6 +36,7 @@ export default function index() {
       <Route path="list" element={<List />} />
       <Route path="pixi" element={<Pixi />} />
       <Route path="fabric" element={<Fabric />} />
+      <Route path="three" element={<Three />} />
     </Routes>
   );
 }
