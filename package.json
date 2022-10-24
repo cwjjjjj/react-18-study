@@ -13,6 +13,8 @@
   },
   "dependencies": {
     "@emotion/react": "^11.9.0",
+    "@react-three/drei": "^9.34.3",
+    "@react-three/fiber": "^8.8.9",
     "@tanstack/react-query": "^4.6.0",
     "@tanstack/react-query-devtools": "^4.6.0",
     "axios": "^0.27.2",
