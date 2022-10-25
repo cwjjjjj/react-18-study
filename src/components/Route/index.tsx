@@ -16,6 +16,7 @@ import List from "../List";
 import Pixi from "../Pixi";
 import Fabric from "../Fabric";
 import Three from "../Three";
+import ReactThreeFiber from "../ReactThreeFiber";
 
 export default function index() {
   return (
@@ -37,6 +38,7 @@ export default function index() {
       <Route path="pixi" element={<Pixi />} />
       <Route path="fabric" element={<Fabric />} />
       <Route path="three" element={<Three />} />
+      <Route path="react-three-fiber" element={<ReactThreeFiber />} />
     </Routes>
   );
 }
