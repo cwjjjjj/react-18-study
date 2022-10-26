@@ -3,10 +3,12 @@ import path from "path";
 import ReactInspector from "vite-plugin-react-inspector";
 import Unocss from "unocss/vite";
 import { presetAttributify, presetUno } from "unocss";
+import react from "@vitejs/plugin-react";
 
 export default defineConfig({
   assetsInclude: ["**/*.gltf", "**/*.glb"],
   plugins: [
+    react(),
     ReactInspector(),
     Unocss({
       presets: [presetAttributify({}), presetUno()],
