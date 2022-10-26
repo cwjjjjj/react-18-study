@@ -26,13 +26,9 @@ function App() {
         <button onClick={() => navigate("/pixi")}>pixi</button>
         <button onClick={() => navigate("/fabric")}>fabric</button>
         <button onClick={() => navigate("/three")}>three</button>
-<<<<<<< HEAD
-        <button onClick={() => navigate("/react-three-fiber")}>react-three-fiber</button>
-=======
         <button onClick={() => navigate("/react-three-fiber")}>
           react-three-fiber
         </button>
->>>>>>> 2fb50934dbedddf67bc579462b97e30c21b4c03c
       </nav>
       <hr />
       <Route />
