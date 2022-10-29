@@ -6,13 +6,13 @@ import shoeGltf from "../assets/shoe.gltf";
 import houseGltf from "../assets/LittlestTokyo.gltf";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import squareGltf from "../assets/square.gltf";
+import { House2 } from "@/assets/LittlestTokyo";
 
 function Ball({ ...props }) {
   const a = useThree();
   console.log(a);
   return (
     <>
-      <pointLight position={[0, 0, 0]} />
       <mesh position={[-10, 10, 0]} {...props}>
         <sphereGeometry />
         <meshStandardMaterial color="hotpink" />
@@ -105,6 +105,23 @@ function Shoe2({ ...props }) {
   );
 }
 
+// gltfjsx generate
+function Shoe3(props: any) {
+  const { nodes, materials }: any = useGLTF(shoeGltf);
+  return (
+    <group {...props} dispose={null}>
+      <mesh geometry={nodes.shoe.geometry} material={materials.laces} />
+      <mesh geometry={nodes.shoe_1.geometry} material={materials.mesh} />
+      <mesh geometry={nodes.shoe_2.geometry} material={materials.caps} />
+      <mesh geometry={nodes.shoe_3.geometry} material={materials.inner} />
+      <mesh geometry={nodes.shoe_4.geometry} material={materials.sole} />
+      <mesh geometry={nodes.shoe_5.geometry} material={materials.stripes} />
+      <mesh geometry={nodes.shoe_6.geometry} material={materials.band} />
+      <mesh geometry={nodes.shoe_7.geometry} material={materials.patch} />
+    </group>
+  );
+}
+
 function House({ ...props }) {
   const { nodes, materials, scene }: any = useGLTF(houseGltf);
   return (
@@ -139,6 +156,7 @@ export default function R3f() {
         width: "100vw",
       }}
     >
+      <pointLight position={[-10, 10, 1]} />
       <Ball position={[-5, 5, 1]} />
 
       <Stage environment="city" intensity={0.6}>
@@ -150,10 +168,11 @@ export default function R3f() {
           position={[0, 0, -2]}
         />
       </Stage>
-      <Shoe2 />
+      <Shoe2 position={[0, 5, 1]} />
+      <Shoe3 position={[5, 5, 1]} />
       <House position={[5, -5, 1]} />
       <Square position={[5, 5, 1]} />
-
+      <House2 scale={0.006} position={[-5, -5, 1]} />
       <OrbitControls />
       <Stats className="fps" />
     </Canvas>
