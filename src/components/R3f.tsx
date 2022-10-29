@@ -7,13 +7,23 @@ import houseGltf from "../assets/LittlestTokyo.gltf";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import squareGltf from "../assets/square.gltf";
 import { House2 } from "@/assets/LittlestTokyo";
+import { useState } from "react";
+import { useSpring, animated } from "@react-spring/three";
 
 function Ball({ ...props }) {
   const a = useThree();
-  console.log(a);
+  const [isBig, setIsBig] = useState(false);
   return (
     <>
-      <mesh position={[-10, 10, 0]} {...props}>
+      <mesh
+        position={[-10, 10, 0]}
+        {...props}
+        scale={isBig ? 2 : 1}
+        onClick={() => {
+          setIsBig(!isBig);
+          console.log("11");
+        }}
+      >
         <sphereGeometry />
         <meshStandardMaterial color="hotpink" />
       </mesh>
@@ -25,11 +35,19 @@ function Ball({ ...props }) {
 
 function Shoe({ color, ...props }: any) {
   const { nodes, materials }: any = useGLTF(shoeGltf);
-  console.log("shoe", useGLTF(shoeGltf));
+  const [isBig, setIsBig] = useState(false);
   // The following is a read-out of the models contents, all of its
   // meshes, groups and so on.
   return (
-    <group {...props} dispose={null}>
+    <group
+      {...props}
+      dispose={null}
+      onClick={() => {
+        console.log("@@");
+        setIsBig(!isBig);
+      }}
+      scale={isBig ? 2 : 1}
+    >
       {/* We can alter materials by piercing into them: materia-property={...} */}
       <mesh
         castShadow
@@ -98,18 +116,38 @@ function Shoe({ color, ...props }: any) {
 
 function Shoe2({ ...props }) {
   const { scene }: any = useGLTF(shoeGltf);
+  const [isBig, setIsBig] = useState(false);
   return (
     <>
-      <primitive object={scene} {...props} />
+      <primitive
+        object={scene}
+        {...props}
+        onClick={() => {
+          setIsBig(!isBig);
+          console.log("shoe2");
+        }}
+        scale={isBig ? 2 : 1}
+      />
     </>
   );
 }
 
 // gltfjsx generate
 function Shoe3(props: any) {
+  const [isBig, setIsBig] = useState(false);
+  const { scale } = useSpring({ scale: isBig ? 2 : 1 });
+
   const { nodes, materials }: any = useGLTF(shoeGltf);
   return (
-    <group {...props} dispose={null}>
+    <animated.group
+      {...props}
+      dispose={null}
+      scale={scale}
+      onClick={() => {
+        console.log("shoe3");
+        setIsBig(!isBig);
+      }}
+    >
       <mesh geometry={nodes.shoe.geometry} material={materials.laces} />
       <mesh geometry={nodes.shoe_1.geometry} material={materials.mesh} />
       <mesh geometry={nodes.shoe_2.geometry} material={materials.caps} />
@@ -118,7 +156,7 @@ function Shoe3(props: any) {
       <mesh geometry={nodes.shoe_5.geometry} material={materials.stripes} />
       <mesh geometry={nodes.shoe_6.geometry} material={materials.band} />
       <mesh geometry={nodes.shoe_7.geometry} material={materials.patch} />
-    </group>
+    </animated.group>
   );
 }
 
@@ -164,12 +202,12 @@ export default function R3f() {
         <Shoe
           color="orange"
           scale={-1}
-          rotation={[0, 0.5, Math.PI]}
+          // rotation={[0, 0.5, Math.PI]}
           position={[0, 0, -2]}
         />
       </Stage>
       <Shoe2 position={[0, 5, 1]} />
-      <Shoe3 position={[5, 5, 1]} />
+      <Shoe3 position={[2, 5, 1]} />
       <House position={[5, -5, 1]} />
       <Square position={[5, 5, 1]} />
       <House2 scale={0.006} position={[-5, -5, 1]} />

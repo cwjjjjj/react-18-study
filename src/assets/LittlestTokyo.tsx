@@ -6,16 +6,27 @@ source: https://sketchfab.com/models/94b24a60dc1b48248de50bf087c0f042
 title: Littlest Tokyo
 */
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { useGLTF, useAnimations } from "@react-three/drei";
 import houseGltf from "./LittlestTokyo.gltf";
+import { animated, useSpring } from "@react-spring/three";
 
 export function House2(props: any) {
   const group = useRef();
   const { nodes, materials, animations }: any = useGLTF(houseGltf);
   const { actions } = useAnimations(animations, group);
+  const [isBig, setIsBig] = useState(false);
+  const { scale } = useSpring({ scale: isBig ? 0.02 : 0.006 });
   return (
-    <group ref={group} {...props} dispose={null}>
+    <animated.group
+      ref={group}
+      {...props}
+      dispose={null}
+      scale={scale}
+      onClick={() => {
+        setIsBig(!isBig);
+      }}
+    >
       <group name="OSG_Scene">
         <group
           name="RootNode_(gltf_orientation_matrix)"
@@ -864,7 +875,7 @@ export function House2(props: any) {
           </group>
         </group>
       </group>
-    </group>
+    </animated.group>
   );
 }
 
