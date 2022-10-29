@@ -1,77 +1,18 @@
-// import { useLoader, Canvas } from "@react-three/fiber";
-// import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
-// import model from "../assets/LittlestTokyo.gltf";
-// import img from "../assets/children-share.png";
-// import test from "../assets/test.gltf";
-// import { useGLTF } from "@react-three/drei";
-// import glb from "../assets/LittlestTokyo.glb";
-// import { PerspectiveCamera, useGLTF } from "@react-three/drei";
-// import { useRef } from "react";
-
-// export default function ReactThreeFiber() {
-//   console.log("model", model);
-//   console.log("img", img);
-//   console.log("test", test);
-//   // const gltf = useLoader(GLTFLoader, model);
-//   // const testGltf = useLoader(GLTFLoader, test);
-//   const testGltf = useGLTF(test);
-//   const testGlb = useGLTF(glb);
-//   // console.log("testgltf", test);
-//   console.log("testGlb", testGlb);
-
-//   return (
-//     <div>
-//       123
-//       <Canvas>
-//         <primitive object={testGlb.scene} />
-//         {/* <primitive object={gltf?.scene} /> */}
-//         {/* <primitive object={testGltf?.scene} /> */}
-//       </Canvas>
-//     </div>
-//   );
-// }
-
-// export default function ReactThreeFiber({ ...props }) {
-//   const group = useRef();
-//   const { nodes, materials } = useGLTF(test) ?? {};
-//   console.log({ nodes, materials });
-//   return (
-//     <group {...props} dispose={null}>
-//       <group
-//         name="camera"
-//         position={[10, 0, 50]}
-//         rotation={[Math.PI / 2, 0, 0]}
-//       >
-//         <PerspectiveCamera fov={40} near={10} far={1000} />
-//       </group>
-//       <group
-//         name="sun"
-//         position={[100, 50, 100]}
-//         rotation={[-Math.PI / 2, 0, 0]}
-//       >
-//         <pointLight intensity={10} />
-//       </group>
-//       <mesh geometry={nodes.Curve007_1} />
-//       <mesh geometry={nodes.Curve007_2} />
-//     </group>
-//   );
-// }
-
-// useGLTF.preload(test);
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { Suspense, useRef, useState } from "react";
-import { useGLTF, Environment } from "@react-three/drei";
+import { useGLTF, Environment, OrbitControls } from "@react-three/drei";
 import { EffectComposer, DepthOfField } from "@react-three/postprocessing";
 import * as THREE from "three";
 import img from "../assets/pokeball-v2-transformed.glb";
-import img2 from "../assets/test.gltf";
-
+import img2 from "../assets/square.gltf";
+import { css } from "@emotion/react";
 
 function Pokeball({ z }) {
   const ref = useRef();
   const { nodes, materials } = useGLTF(img);
   const { viewport, camera } = useThree();
   const { width, height } = viewport.getCurrentViewport(camera, [0, 0, z]);
+  const [isScale, setIsScale] = useState(false);
 
   const [data] = useState({
     x: THREE.MathUtils.randFloatSpread(2),
@@ -95,8 +36,11 @@ function Pokeball({ z }) {
 
   return (
     <mesh
+      onClick={() => {
+        setIsScale(!isScale);
+      }}
       ref={ref}
-      scale={0.016}
+      scale={isScale ? 0.1 : 0.016}
       geometry={nodes.PokeBall__0.geometry}
       material={materials["Scene_-_Root"]}
       material-emissive="black"
@@ -104,13 +48,13 @@ function Pokeball({ z }) {
   );
 }
 
-function House(){
-  const ref1= useRef()
-  const ref2= useRef()
+function House() {
+  const ref1 = useRef();
+  const ref2 = useRef();
   const { viewport, camera } = useThree();
   const { width, height } = viewport.getCurrentViewport(camera, [0, 0, -100]);
   const { nodes, materials } = useGLTF(img2);
-  console.log('img2',{nodes,materials})
+  console.log("img2", { nodes, materials });
   const [data] = useState({
     x: THREE.MathUtils.randFloatSpread(2),
     y: THREE.MathUtils.randFloatSpread(height),
@@ -142,21 +86,24 @@ function House(){
 
     if (data.y > height) data.y = -height;
   });
-  return <>
-   <mesh
-   ref={ref1}
-  scale={0.016}
-  geometry={nodes.Curve007_1.geometry}
-  material={materials["Material.001"]}
-  material-emissive="black"
-/>
-<mesh
-   ref={ref2}
-  scale={0.016}
-  geometry={nodes.Curve007_2.geometry}
-  material={materials["Material.002"]}
-  material-emissive="black"
-/></>
+  return (
+    <group>
+      <mesh
+        ref={ref1}
+        scale={0.016}
+        geometry={nodes.Curve007_1.geometry}
+        material={materials["Material.001"]}
+        material-emissive="black"
+      />
+      <mesh
+        ref={ref2}
+        scale={0.016}
+        geometry={nodes.Curve007_2.geometry}
+        material={materials["Material.002"]}
+        material-emissive="black"
+      />
+    </group>
+  );
 }
 
 export default function ReactThreeFiber({ count = 70, depth = 70 }) {
@@ -164,7 +111,10 @@ export default function ReactThreeFiber({ count = 70, depth = 70 }) {
     <Canvas
       gl={{ alpha: false, antialias: true }}
       dpr={[1, 1.5]}
-      camera={{ position: [0, 0, 10], fov: 20, near: 0.01, far: depth + 20 }}
+      camera={{ position: [0, 0, 10], fov: 60, near: 0.01, far: depth + 20 }}
+      style={{
+        height: "100vh",
+      }}
     >
       <color attach="background" args={["#2a75bb"]} />
 
@@ -181,11 +131,10 @@ export default function ReactThreeFiber({ count = 70, depth = 70 }) {
 
         {Array.from({ length: count }, (_, i) => {
           const zSpread = -(i / count) * depth - 25; // function of the depth and then offset by - 25 so the 3d models are not too close
-          console.log('z',zSpread)
+          console.log("z", zSpread);
           return <Pokeball key={i} z={zSpread} />;
         })}
         <House />
-
 
         <EffectComposer multisampling={0}>
           <DepthOfField
@@ -195,6 +144,7 @@ export default function ReactThreeFiber({ count = 70, depth = 70 }) {
             height={700}
           />
         </EffectComposer>
+        <OrbitControls />
       </Suspense>
     </Canvas>
   );

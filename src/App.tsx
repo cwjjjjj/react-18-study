@@ -29,6 +29,7 @@ function App() {
         <button onClick={() => navigate("/react-three-fiber")}>
           react-three-fiber
         </button>
+        <button onClick={() => navigate("/R3f")}>r3f</button>
       </nav>
       <hr />
       <Route />
