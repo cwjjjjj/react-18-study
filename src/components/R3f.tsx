@@ -7,13 +7,13 @@ import houseGltf from "../assets/LittlestTokyo.gltf";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import squareGltf from "../assets/square.gltf";
 
-function Test() {
+function Ball({ ...props }) {
   const a = useThree();
   console.log(a);
   return (
     <>
-      <pointLight position={[10, 10, 10]} />
-      <mesh>
+      <pointLight position={[0, 0, 0]} />
+      <mesh position={[-10, 10, 0]} {...props}>
         <sphereGeometry />
         <meshStandardMaterial color="hotpink" />
       </mesh>
@@ -96,22 +96,36 @@ function Shoe({ color, ...props }: any) {
   );
 }
 
-function House() {
-  const { nodes, materials, scene }: any = useGLTF(houseGltf);
+function Shoe2({ ...props }) {
+  const { scene }: any = useGLTF(shoeGltf);
   return (
     <>
-      <primitive object={scene} scale={0.4} />{" "}
+      <primitive object={scene} {...props} />
     </>
   );
 }
 
-function Square() {
+function House({ ...props }) {
+  const { nodes, materials, scene }: any = useGLTF(houseGltf);
+  return (
+    <>
+      <primitive
+        object={scene}
+        scale={0.006}
+        position={[10, -10, 0]}
+        {...props}
+      />
+    </>
+  );
+}
+
+function Square({ ...props }) {
   const { nodes, materials, scene }: any = useGLTF(squareGltf);
   const gltf = useLoader(GLTFLoader, squareGltf);
 
   return (
     <>
-      <primitive object={scene} scale={0.4} />
+      <primitive object={scene} scale={0.4} {...props} />
     </>
   );
 }
@@ -125,7 +139,8 @@ export default function R3f() {
         width: "100vw",
       }}
     >
-      <Test />
+      <Ball position={[-5, 5, 1]} />
+
       <Stage environment="city" intensity={0.6}>
         <Shoe color="tomato" position={[10, 0, 0]} />
         <Shoe
@@ -134,9 +149,10 @@ export default function R3f() {
           rotation={[0, 0.5, Math.PI]}
           position={[0, 0, -2]}
         />
-        <House />
-        <Square />
       </Stage>
+      <Shoe2 />
+      <House position={[5, -5, 1]} />
+      <Square position={[5, 5, 1]} />
 
       <OrbitControls />
       <Stats className="fps" />
