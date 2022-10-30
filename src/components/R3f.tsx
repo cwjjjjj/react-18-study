@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import { Canvas, useLoader, useThree } from "@react-three/fiber";
+import { Canvas, useFrame, useLoader, useThree } from "@react-three/fiber";
 import { OrbitControls, Stage, Stats, useGLTF } from "@react-three/drei";
 // @ts-ignore
 import shoeGltf from "../assets/shoe.gltf";
@@ -7,9 +7,10 @@ import houseGltf from "../assets/LittlestTokyo.gltf";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import squareGltf from "../assets/square.gltf";
 import { House2 } from "@/assets/LittlestTokyo";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useSpring, animated } from "@react-spring/three";
 import ferrariGltf from "../assets/ferrari.glb";
+import { easings } from "react-spring";
 
 function Ball({ ...props }) {
   const a = useThree();
@@ -36,8 +37,39 @@ function Ball({ ...props }) {
 
 function Ferrari(props: any) {
   const { nodes, materials }: any = useGLTF(ferrariGltf);
+  const [isBig, setIsBig] = useState(false);
+  const { rotation } = useSpring({
+    from: {
+      rotation: [0, 0, 0],
+    },
+    to: {
+      rotation: [2 * Math.PI, 0, 0],
+    },
+    config: {
+      duration: 600,
+    },
+    loop: { reset: true },
+  });
+  const { scale } = useSpring({
+    scale: isBig ? 2 : 1,
+  });
+  console.log({ rotation });
+  useFrame(({ clock }) => {
+    // testRef.current.rotation = [-Math.PI / 1, 0, 0];
+    const a = clock.getElapsedTime();
+    // testRef.current.rotation.x = a;
+  });
+  // console.log("spring", spring);
+
   return (
-    <group {...props} dispose={null}>
+    <animated.group
+      {...props}
+      dispose={null}
+      scale={scale}
+      onClick={() => {
+        setIsBig(!isBig);
+      }}
+    >
       <group position={[0, 0.68, 0]} rotation={[-Math.PI / 2, 0, -Math.PI / 2]}>
         <mesh
           geometry={nodes.trim.geometry}
@@ -140,7 +172,7 @@ function Ferrari(props: any) {
           position={[-1.4, 0, 0.05]}
         />
       </group>
-      <group position={[0.82, 0.36, 1.5]} rotation={[-Math.PI / 2, 0, 0]}>
+      <animated.group position={[0.82, 0.36, 1.5]} rotation={rotation}>
         <mesh geometry={nodes.wheel.geometry} material={materials.metal_gray} />
         <mesh
           geometry={nodes.tire.geometry}
@@ -167,8 +199,8 @@ function Ferrari(props: any) {
           material={materials.Interior_dark}
           position={[0.1, 0, 0.01]}
         />
-      </group>
-      <group position={[-0.82, 0.36, 1.49]} rotation={[-Math.PI / 2, 0, 0]}>
+      </animated.group>
+      <animated.group position={[-0.82, 0.36, 1.49]} rotation={rotation}>
         <mesh
           geometry={nodes.tire_1.geometry}
           material={materials.Tires}
@@ -198,8 +230,8 @@ function Ferrari(props: any) {
           material={materials.Interior_dark}
           position={[-0.1, 0, 0.01]}
         />
-      </group>
-      <group position={[-0.84, 0.36, -1.16]} rotation={[-Math.PI / 2, 0, 0]}>
+      </animated.group>
+      <animated.group position={[-0.84, 0.36, -1.16]} rotation={rotation}>
         <mesh
           geometry={nodes.rim_fl.geometry}
           material={materials.metal_gray}
@@ -228,8 +260,8 @@ function Ferrari(props: any) {
           material={materials.Tires}
           position={[0.01, 0, 0]}
         />
-      </group>
-      <group position={[0.83, 0.36, -1.15]} rotation={[-Math.PI / 2, 0, 0]}>
+      </animated.group>
+      <animated.group position={[0.83, 0.36, -1.15]} rotation={rotation}>
         <mesh
           geometry={nodes.brake_3.geometry}
           material={materials.metal_gray}
@@ -258,7 +290,7 @@ function Ferrari(props: any) {
           material={materials.Interior_dark}
           position={[0.09, 0, 0.01]}
         />
-      </group>
+      </animated.group>
       <group position={[-0.35, 0.8, -0.35]} rotation={[-1.92, 0, 0]}>
         <mesh
           geometry={nodes.steering_carbon.geometry}
@@ -301,7 +333,7 @@ function Ferrari(props: any) {
           rotation={[Math.PI / 9, 0, 0]}
         />
       </group>
-    </group>
+    </animated.group>
   );
 }
 
@@ -445,7 +477,6 @@ function House({ ...props }) {
     </>
   );
 }
-
 function Square({ ...props }) {
   const { nodes, materials, scene }: any = useGLTF(squareGltf);
   const gltf = useLoader(GLTFLoader, squareGltf);
@@ -456,7 +487,6 @@ function Square({ ...props }) {
     </>
   );
 }
-
 export default function R3f() {
   return (
     <Canvas
@@ -468,7 +498,6 @@ export default function R3f() {
     >
       <pointLight position={[-10, 10, 1]} />
       <Ball position={[-5, 5, 1]} />
-
       <Stage environment="city" intensity={0.6}>
         <Shoe color="tomato" position={[10, 0, 0]} />
         <Shoe
