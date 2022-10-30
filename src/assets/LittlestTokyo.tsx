@@ -15,6 +15,7 @@ export function House2(props: any) {
   const group = useRef();
   const { nodes, materials, animations }: any = useGLTF(houseGltf);
   const { actions } = useAnimations(animations, group);
+  console.log({ actions });
   const [isBig, setIsBig] = useState(false);
   const { scale } = useSpring({ scale: isBig ? 0.02 : 0.006 });
   return (
@@ -24,8 +25,19 @@ export function House2(props: any) {
       dispose={null}
       scale={scale}
       onClick={() => {
+        actions["Take 001"].play();
         setIsBig(!isBig);
       }}
+      onDoubleClick={() => {
+        actions["Take 001"].stop();
+      }}
+      onPointerOut={(e) => {
+        actions["Take 001"].paused = true;
+      }}
+      onPointerEnter={(e) => {
+        actions["Take 001"].play();
+        actions["Take 001"].paused = false;
+      }} // see note 1
     >
       <group name="OSG_Scene">
         <group
