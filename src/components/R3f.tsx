@@ -437,7 +437,7 @@ function Shoe2({ ...props }) {
 }
 
 // gltfjsx generate
-function Shoe3(props: any) {
+export function Shoe3(props: any) {
   const [isBig, setIsBig] = useState(false);
   const { scale } = useSpring({ scale: isBig ? 2 : 1 });
 

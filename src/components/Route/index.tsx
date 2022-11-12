@@ -18,6 +18,7 @@ import Fabric from "../Fabric";
 import Three from "../Three";
 import ReactThreeFiber from "../ReactThreeFiber";
 import R3f from "../R3f";
+import Html2Image from "../Html2Image";
 
 export default function index() {
   return (
@@ -41,6 +42,7 @@ export default function index() {
       <Route path="three" element={<Three />} />
       <Route path="react-three-fiber" element={<ReactThreeFiber />} />
       <Route path="r3f" element={<R3f />} />
+      <Route path="html2image" element={<Html2Image />} />
     </Routes>
   );
 }
