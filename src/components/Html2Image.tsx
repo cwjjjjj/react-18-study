@@ -3,6 +3,7 @@ import { toPng } from "html-to-image";
 import R3f, { Shoe3 } from "./R3f";
 import { Canvas } from "@react-three/fiber";
 import List from "./List";
+import houseSvg from "../house.svg";
 
 export default function Html2Image() {
   const ref = useRef<HTMLDivElement>(null);
@@ -115,6 +116,7 @@ export default function Html2Image() {
         ></path>
       </svg>
       <button onClick={onButtonClick}>Click me</button>
+      <img src={houseSvg} alt="" />
       <div ref={ref}>
         <List />
       </div>

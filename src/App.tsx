@@ -31,6 +31,7 @@ function App() {
         </button>
         <button onClick={() => navigate("/R3f")}>r3f</button>
         <button onClick={() => navigate("/html2image")}>html2image</button>
+        <button onClick={() => navigate("/virtual-list")}>virtual-list</button>
       </nav>
       <hr />
       <Route />
