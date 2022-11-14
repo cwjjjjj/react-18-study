@@ -40,8 +40,11 @@ const Row = ({ index, style }: any) => <div style={style}>Row {index}</div>;
 
 export default function VirtualList() {
   return (
-    <List height={150} itemCount={1000} itemSize={getItemSize} width={300}>
-      {Row}
-    </List>
+    <>
+      <List height={150} itemCount={1000} itemSize={getItemSize} width={300}>
+        {Row}
+      </List>
+      <div>test</div>
+    </>
   );
 }
