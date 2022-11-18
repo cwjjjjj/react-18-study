@@ -1,15 +1,16 @@
+// source
+import shoeGltf from "../assets/shoe.gltf";
+import houseGltf from "../assets/LittlestTokyo.gltf";
+import ferrariGltf from "../assets/ferrari.glb";
+import squareGltf from "../assets/square.gltf";
+
 import * as THREE from "three";
 import { Canvas, useFrame, useLoader, useThree } from "@react-three/fiber";
 import { OrbitControls, Stage, Stats, useGLTF } from "@react-three/drei";
-// @ts-ignore
-import shoeGltf from "../assets/shoe.gltf";
-import houseGltf from "../assets/LittlestTokyo.gltf";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
-import squareGltf from "../assets/square.gltf";
 import { House2 } from "@/assets/LittlestTokyo";
 import { useState, useRef } from "react";
 import { useSpring, animated } from "@react-spring/three";
-import ferrariGltf from "../assets/ferrari.glb";
 import { easings } from "react-spring";
 
 function Ball({ ...props }) {
