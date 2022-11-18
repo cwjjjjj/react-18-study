@@ -21,6 +21,7 @@ import R3f from "../R3f";
 import Html2Image from "../Html2Image";
 import VirtualList from "../VirtualList";
 import Leva from "../Leva";
+import ReactSpring from "../ReactSpring";
 
 export default function index() {
   return (
@@ -47,6 +48,7 @@ export default function index() {
       <Route path="html2image" element={<Html2Image />} />
       <Route path="virtual-list" element={<VirtualList />} />
       <Route path="leva" element={<Leva />} />
+      <Route path="react-spring" element={<ReactSpring />} />
     </Routes>
   );
 }

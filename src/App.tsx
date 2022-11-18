@@ -33,6 +33,7 @@ function App() {
         <button onClick={() => navigate("/html2image")}>html2image</button>
         <button onClick={() => navigate("/virtual-list")}>virtual-list</button>
         <button onClick={() => navigate("/leva")}>leva</button>
+        <button onClick={() => navigate("/react-spring")}>react-spring</button>
       </nav>
       <hr />
       <Route />

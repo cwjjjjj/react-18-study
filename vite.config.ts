@@ -8,7 +8,9 @@ import react from "@vitejs/plugin-react";
 export default defineConfig({
   assetsInclude: ["**/*.gltf", "**/*.glb"],
   plugins: [
-    react(),
+    react({
+      jsxImportSource: "@emotion/react",
+    }),
     ReactInspector(),
     Unocss({
       presets: [presetAttributify({}), presetUno()],
@@ -24,7 +26,6 @@ export default defineConfig({
     jsxFactory: "jsx",
     jsxInject: `
       import React from 'react'  
-      import { jsx } from '@emotion/react'
     `,
   },
   build: {
