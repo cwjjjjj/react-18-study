@@ -20,6 +20,7 @@ import ReactThreeFiber from "../ReactThreeFiber";
 import R3f from "../R3f";
 import Html2Image from "../Html2Image";
 import VirtualList from "../VirtualList";
+import Leva from "../Leva";
 
 export default function index() {
   return (
@@ -45,6 +46,7 @@ export default function index() {
       <Route path="r3f" element={<R3f />} />
       <Route path="html2image" element={<Html2Image />} />
       <Route path="virtual-list" element={<VirtualList />} />
+      <Route path="leva" element={<Leva />} />
     </Routes>
   );
 }

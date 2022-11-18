@@ -22,6 +22,7 @@
     "fabric": "^5.2.4",
     "framer-motion": "^7.3.2",
     "html-to-image": "^1.10.8",
+    "leva": "^0.9.34",
     "path": "^0.12.7",
     "pixi.js": "^6.5.4",
     "react": "^18.1.0",
