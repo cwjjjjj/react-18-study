@@ -24,6 +24,7 @@ export default function Volume() {
   useEffect(() => {
     test();
     testTry();
+    console.trace("isRecording", isRecording);
   }, []);
 
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -36,9 +37,18 @@ export default function Volume() {
     return () => {
       clearInterval(timer);
     };
-
-    const a = new Notification("hello");
   }, []);
+
+  const element = (
+    <div
+      onClick={(e) => {
+        console.log("element", element);
+      }}
+    >
+      element {JSON.stringify(isRecording)}
+    </div>
+  );
+
   return (
     <div>
       <button onClick={() => setReady(true)}>开始录音</button>
@@ -64,6 +74,7 @@ export default function Volume() {
         ref={videoRef}
         poster="../assets/children-share.png"
       ></video>
+      {element}
     </div>
   );
 }

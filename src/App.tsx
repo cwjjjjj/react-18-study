@@ -1,3 +1,4 @@
+import { css } from "@emotion/react";
 import { Outlet, useNavigate } from "react-router-dom";
 import Route from "./components/Route";
 
@@ -6,7 +7,12 @@ function App() {
 
   return (
     <>
-      <nav>
+      <nav
+        css={css`
+          display: flex;
+          gap: 5px;
+        `}
+      >
         <button onClick={() => navigate("/")}>Home</button>
         <button onClick={() => navigate("/canvas")}>Canvas</button>
         <button onClick={() => navigate("/framer-motion")}>
