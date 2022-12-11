@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 export default function Volume() {
   const { start, stop, isRecording, volume, setReady, ready } = useVolume();
   const test = () => {
+    // test revert
     setTimeout(
       console.log,
       100,
@@ -36,8 +37,6 @@ export default function Volume() {
     return () => {
       clearInterval(timer);
     };
-
-    const a = new Notification("hello");
   }, []);
   return (
     <div>
