@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // var reg3 = /\d(\w(\d(\w(\d))))/;
+      // var str = "1a2b3c4d5e";
+      // var arr = reg3.exec(str);
+      // console.log(reg3.lastIndex + "\t" + arr.index + "\t" + arr.toString()); //0	0	1a2,a
+      // console.log("@@@", arr);
+
+      var reg = /man/g;
+      console.log("reg", reg);
+      var reg2 = /(wo)?man/g;
+      console.log("reg2", reg2);
+      reg.compile(reg2);
+      console.log("reg", reg);
+      console.log("reg2", reg2);
+    </script>
+  </body>
+</html>
