@@ -6,7 +6,7 @@ import squareGltf from "../assets/square.gltf";
 
 import * as THREE from "three";
 import { Canvas, useFrame, useLoader, useThree } from "@react-three/fiber";
-import { OrbitControls, Stage, Stats, useGLTF } from "@react-three/drei";
+import { Html, OrbitControls, Stage, Stats, useGLTF } from "@react-three/drei";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { House2 } from "@/assets/LittlestTokyo";
 import { useState, useRef, Suspense } from "react";
@@ -468,7 +468,6 @@ export function Shoe3(props: any) {
 
 function House({ ...props }) {
   const { nodes, materials, scene, ...rest }: any = useGLTF(houseGltf);
-  console.log("loader", { nodes, materials, scene, ...rest });
   return (
     <>
       <primitive
@@ -483,7 +482,6 @@ function House({ ...props }) {
 function Square({ ...props }) {
   const { nodes, materials, scene }: any = useGLTF(squareGltf);
   const gltf = useLoader(GLTFLoader, squareGltf);
-  console.log("loader2", gltf);
 
   return (
     <>
@@ -499,10 +497,6 @@ export default function R3f() {
         height: "300px",
         width: "300px",
       }}
-      onLoad={(e) => {
-        console.log("onload", e);
-      }}
-      fallback={<div>Loading...</div>}
     >
       <Suspense fallback={<R3fLoader />}>
         <pointLight position={[-10, 10, 1]} />
