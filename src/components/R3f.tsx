@@ -9,9 +9,10 @@ import { Canvas, useFrame, useLoader, useThree } from "@react-three/fiber";
 import { OrbitControls, Stage, Stats, useGLTF } from "@react-three/drei";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { House2 } from "@/assets/LittlestTokyo";
-import { useState, useRef } from "react";
+import { useState, useRef, Suspense } from "react";
 import { useSpring, animated } from "@react-spring/three";
 import { easings } from "react-spring";
+import R3fLoader from "./R3fLoader";
 
 function Ball({ ...props }) {
   const a = useThree();
@@ -466,7 +467,8 @@ export function Shoe3(props: any) {
 }
 
 function House({ ...props }) {
-  const { nodes, materials, scene }: any = useGLTF(houseGltf);
+  const { nodes, materials, scene, ...rest }: any = useGLTF(houseGltf);
+  console.log("loader", { nodes, materials, scene, ...rest });
   return (
     <>
       <primitive
@@ -481,6 +483,7 @@ function House({ ...props }) {
 function Square({ ...props }) {
   const { nodes, materials, scene }: any = useGLTF(squareGltf);
   const gltf = useLoader(GLTFLoader, squareGltf);
+  console.log("loader2", gltf);
 
   return (
     <>
@@ -493,29 +496,35 @@ export default function R3f() {
     <Canvas
       shadows
       style={{
-        height: "100vh",
-        width: "100vw",
+        height: "300px",
+        width: "300px",
       }}
+      onLoad={(e) => {
+        console.log("onload", e);
+      }}
+      fallback={<div>Loading...</div>}
     >
-      <pointLight position={[-10, 10, 1]} />
-      <Ball position={[-5, 5, 1]} />
-      <Stage environment="city" intensity={0.6}>
-        <Shoe color="tomato" position={[10, 0, 0]} />
-        <Shoe
-          color="orange"
-          scale={-1}
-          // rotation={[0, 0.5, Math.PI]}
-          position={[0, 0, -2]}
-        />
-      </Stage>
-      <Shoe2 position={[0, 5, 1]} />
-      <Shoe3 position={[2, 5, 1]} />
-      <House position={[5, -5, 1]} />
-      <Square position={[5, 5, 1]} />
-      <House2 scale={0.006} position={[-5, -5, 1]} />
-      <Ferrari positon={[0, 0, 0]} />
-      <OrbitControls />
-      <Stats className="fps" />
+      <Suspense fallback={<R3fLoader />}>
+        <pointLight position={[-10, 10, 1]} />
+        <Ball position={[-5, 5, 1]} />
+        <Stage environment="city" intensity={0.6}>
+          <Shoe color="tomato" position={[10, 0, 0]} />
+          <Shoe
+            color="orange"
+            scale={-1}
+            // rotation={[0, 0.5, Math.PI]}
+            position={[0, 0, -2]}
+          />
+        </Stage>
+        <Shoe2 position={[0, 5, 1]} />
+        <Shoe3 position={[2, 5, 1]} />
+        <House position={[5, -5, 1]} />
+        <Square position={[5, 5, 1]} />
+        <House2 scale={0.006} position={[-5, -5, 1]} />
+        <Ferrari positon={[0, 0, 0]} />
+        <OrbitControls />
+        <Stats className="fps" />
+      </Suspense>
     </Canvas>
   );
 }
