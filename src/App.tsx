@@ -40,6 +40,7 @@ function App() {
         <button onClick={() => navigate("/virtual-list")}>virtual-list</button>
         <button onClick={() => navigate("/leva")}>leva</button>
         <button onClick={() => navigate("/react-spring")}>react-spring</button>
+        <button onClick={() => navigate("/input-css")}>input-css</button>
       </nav>
       <hr />
       <Route />
