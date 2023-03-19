@@ -3,6 +3,7 @@ import shoeGltf from "../assets/shoe.gltf";
 import houseGltf from "../assets/LittlestTokyo.gltf";
 import ferrariGltf from "../assets/ferrari.glb";
 import squareGltf from "../assets/square.gltf";
+import robotGltf from "../assets/RobotExpressive.gltf";
 
 import * as THREE from "three";
 import { Canvas, useFrame, useLoader, useThree } from "@react-three/fiber";
@@ -489,6 +490,65 @@ function Square({ ...props }) {
     </>
   );
 }
+
+function Robot(props: any) {
+  const group = useRef();
+  const { nodes, materials, animations }: any = useGLTF(robotGltf);
+  return (
+    <group ref={group} {...props} dispose={null}>
+      <group name="Root_Scene">
+        <group name="RootNode">
+          <group
+            name="RobotArmature"
+            rotation={[-Math.PI / 2, 0, 0]}
+            scale={100}
+          >
+            <primitive object={nodes.Bone} />
+          </group>
+          <group
+            name="HandR"
+            position={[0, 2.37, -0.02]}
+            rotation={[-Math.PI / 2, 0, 0]}
+            scale={100}
+          >
+            <skinnedMesh
+              name="HandR_1"
+              geometry={nodes.HandR_1.geometry}
+              material={materials.Main}
+              skeleton={nodes.HandR_1.skeleton}
+            />
+            <skinnedMesh
+              name="HandR_2"
+              geometry={nodes.HandR_2.geometry}
+              material={materials.Grey}
+              skeleton={nodes.HandR_2.skeleton}
+            />
+          </group>
+          <group
+            name="HandL"
+            position={[0, 2.37, -0.02]}
+            rotation={[-Math.PI / 2, 0, 0]}
+            scale={100}
+          >
+            <skinnedMesh
+              name="HandL_1"
+              geometry={nodes.HandL_1.geometry}
+              material={materials.Main}
+              skeleton={nodes.HandL_1.skeleton}
+            />
+            <skinnedMesh
+              name="HandL_2"
+              geometry={nodes.HandL_2.geometry}
+              material={materials.Grey}
+              skeleton={nodes.HandL_2.skeleton}
+            />
+          </group>
+        </group>
+      </group>
+    </group>
+  );
+}
+
 export default function R3f() {
   return (
     <Canvas
@@ -516,6 +576,7 @@ export default function R3f() {
         <Square position={[5, 5, 1]} />
         <House2 scale={0.006} position={[-5, -5, 1]} />
         <Ferrari positon={[0, 0, 0]} />
+        <Robot />
         <OrbitControls />
         <Stats className="fps" />
       </Suspense>

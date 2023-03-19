@@ -12,6 +12,7 @@
     "lint": "prettier '**/*.{ts,tsx}' --list-different"
   },
   "dependencies": {
+    "@alfonmga/react-lottie-light-ts": "^0.0.1",
     "@emotion/react": "^11.9.0",
     "@react-three/drei": "^9.34.3",
     "@react-three/fiber": "^8.8.9",

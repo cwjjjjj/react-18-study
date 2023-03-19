@@ -23,6 +23,7 @@ import VirtualList from "../VirtualList";
 import Leva from "../Leva";
 import ReactSpring from "../ReactSpring";
 import InputCss from "../InputCss";
+import LottieFC from "../Lottie";
 
 export default function index() {
   return (
@@ -51,6 +52,7 @@ export default function index() {
       <Route path="leva" element={<Leva />} />
       <Route path="react-spring" element={<ReactSpring />} />
       <Route path="input-css" element={<InputCss />} />
+      <Route path="lottie" element={<LottieFC />} />
     </Routes>
   );
 }
