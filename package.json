@@ -17,7 +17,7 @@
     "@react-three/drei": "^9.34.3",
     "@react-three/fiber": "^8.8.9",
     "@react-three/postprocessing": "^2.7.0",
-    "@tanstack/react-query": "^4.6.0",
+    "@tanstack/react-query": "^4.28.0",
     "@tanstack/react-query-devtools": "^4.6.0",
     "axios": "^0.27.2",
     "fabric": "^5.2.4",
@@ -50,7 +50,7 @@
     "prettier": "^2.7.1",
     "typescript": "^4.6.3",
     "unocss": "^0.45.6",
-    "vite": "^3.0.7",
+    "vite": "^3.2.5",
     "vite-plugin-react-inspector": "^0.3.2"
   }
 }

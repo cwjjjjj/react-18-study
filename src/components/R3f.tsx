@@ -7,10 +7,17 @@ import robotGltf from "../assets/RobotExpressive.gltf";
 
 import * as THREE from "three";
 import { Canvas, useFrame, useLoader, useThree } from "@react-three/fiber";
-import { Html, OrbitControls, Stage, Stats, useGLTF } from "@react-three/drei";
+import {
+  Html,
+  OrbitControls,
+  Stage,
+  Stats,
+  useAnimations,
+  useGLTF,
+} from "@react-three/drei";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { House2 } from "@/assets/LittlestTokyo";
-import { useState, useRef, Suspense } from "react";
+import { useState, useRef, Suspense, useEffect } from "react";
 import { useSpring, animated } from "@react-spring/three";
 import { easings } from "react-spring";
 import R3fLoader from "./R3fLoader";
@@ -492,60 +499,83 @@ function Square({ ...props }) {
 }
 
 function Robot(props: any) {
-  const group = useRef();
+  const [currentAction, setCurrentAction] = useState("");
   const { nodes, materials, animations }: any = useGLTF(robotGltf);
+  const { ref, mixer, names, actions, clips } = useAnimations(animations);
+  useEffect(() => {
+    actions?.[currentAction]?.play();
+  }, [currentAction]);
   return (
-    <group ref={group} {...props} dispose={null}>
-      <group name="Root_Scene">
-        <group name="RootNode">
-          <group
-            name="RobotArmature"
-            rotation={[-Math.PI / 2, 0, 0]}
-            scale={100}
-          >
-            <primitive object={nodes.Bone} />
-          </group>
-          <group
-            name="HandR"
-            position={[0, 2.37, -0.02]}
-            rotation={[-Math.PI / 2, 0, 0]}
-            scale={100}
-          >
-            <skinnedMesh
-              name="HandR_1"
-              geometry={nodes.HandR_1.geometry}
-              material={materials.Main}
-              skeleton={nodes.HandR_1.skeleton}
-            />
-            <skinnedMesh
-              name="HandR_2"
-              geometry={nodes.HandR_2.geometry}
-              material={materials.Grey}
-              skeleton={nodes.HandR_2.skeleton}
-            />
-          </group>
-          <group
-            name="HandL"
-            position={[0, 2.37, -0.02]}
-            rotation={[-Math.PI / 2, 0, 0]}
-            scale={100}
-          >
-            <skinnedMesh
-              name="HandL_1"
-              geometry={nodes.HandL_1.geometry}
-              material={materials.Main}
-              skeleton={nodes.HandL_1.skeleton}
-            />
-            <skinnedMesh
-              name="HandL_2"
-              geometry={nodes.HandL_2.geometry}
-              material={materials.Grey}
-              skeleton={nodes.HandL_2.skeleton}
-            />
+    <>
+      <Html>
+        <div>
+          {names.length &&
+            names.map((item) => {
+              console.log("action item", item);
+              return (
+                <button
+                  onClick={() => {
+                    setCurrentAction(item);
+                  }}
+                >
+                  {item}
+                </button>
+              );
+            })}
+        </div>
+      </Html>
+      <group ref={ref} {...props} dispose={null}>
+        <group name="Root_Scene">
+          <group name="RootNode">
+            <group
+              name="RobotArmature"
+              rotation={[-Math.PI / 2, 0, 0]}
+              scale={100}
+            >
+              <primitive object={nodes.Bone} />
+            </group>
+            <group
+              name="HandR"
+              position={[0, 2.37, -0.02]}
+              rotation={[-Math.PI / 2, 0, 0]}
+              scale={100}
+            >
+              <skinnedMesh
+                name="HandR_1"
+                geometry={nodes.HandR_1.geometry}
+                material={materials.Main}
+                skeleton={nodes.HandR_1.skeleton}
+              />
+              <skinnedMesh
+                name="HandR_2"
+                geometry={nodes.HandR_2.geometry}
+                material={materials.Grey}
+                skeleton={nodes.HandR_2.skeleton}
+              />
+            </group>
+            <group
+              name="HandL"
+              position={[0, 2.37, -0.02]}
+              rotation={[-Math.PI / 2, 0, 0]}
+              scale={100}
+            >
+              <skinnedMesh
+                name="HandL_1"
+                geometry={nodes.HandL_1.geometry}
+                material={materials.Main}
+                skeleton={nodes.HandL_1.skeleton}
+              />
+              <skinnedMesh
+                name="HandL_2"
+                geometry={nodes.HandL_2.geometry}
+                material={materials.Grey}
+                skeleton={nodes.HandL_2.skeleton}
+              />
+            </group>
           </group>
         </group>
       </group>
-    </group>
+    </>
   );
 }
 
