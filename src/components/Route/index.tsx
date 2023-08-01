@@ -25,6 +25,7 @@ import ReactSpring from "../ReactSpring";
 import InputCss from "../InputCss";
 import LottieFC from "../Lottie";
 import Robot from "../Robot";
+import MediaQuery from "../MediaQuery";
 
 export default function index() {
   return (
@@ -55,6 +56,7 @@ export default function index() {
       <Route path="input-css" element={<InputCss />} />
       <Route path="lottie" element={<LottieFC />} />
       <Route path="robot" element={<Robot />} />
+      <Route path="media-query" element={<MediaQuery />} />
     </Routes>
   );
 }
